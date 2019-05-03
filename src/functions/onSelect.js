@@ -50,24 +50,32 @@ export default function(
       break;
     case "top":
       if (options[selected + 1]) {
-        if (cursor > options[selected].bottom) {
+        let index = 1
+        while (cursor > options[selected].bottom){
+          index =+ 1
+        }
+        // if (cursor > options[selected].bottom) {
           handleSelection(
-            options[selected + 1].item,
-            options[selected + 1].index,
+            options[selected + index].item,
+            options[selected + index].index,
             cursor
           );
-        }
+        // }
       }
       break;
     case "down":
       if (options[selected - 1]) {
-        if (cursor < options[selected].top) {
+        let index = 1
+        while (cursor < options[selected].top){
+          index =+ 1
+        }
+        // if (cursor < options[selected].top) {
           handleSelection(
-            options[selected - 1].item,
-            options[selected - 1].index,
+            options[selected - index].item,
+            options[selected - index].index,
             cursor
           );
-        }
+        // }
       }
       break;
     default:
