@@ -50,14 +50,16 @@ export default function(
       break;
     case "top":
       if (options[selected + 1]) {
-        let index = 1
-        while (options[selected + (index + 1)] && cursor > options[selected + (index + 1)].bottom){
-          index =+ 1
-        }
+        // let index = 1
+        // while (options[selected + (index + 1)] && cursor > options[selected + (index + 1)].bottom){
+        //   index =+ 1
+        // }
+        const selectedIndex = options.findIndex(cell => cursor < cell.bottom && cursor > cell.top);
+        console.log("top", selected, cursor, selectedIndex)
         if (cursor > options[selected].bottom) {
           handleSelection(
-            options[selected + index].item,
-            options[selected + index].index,
+            options[selectedIndex].item,
+            options[selectedIndex].index,
             cursor
           );
         }
@@ -65,10 +67,12 @@ export default function(
       break;
     case "down":
       if (options[selected - 1]) {
-        let index = 1
-        while (options[selected - (index + 1)] && cursor < options[selected - (index + 1)].top){
-          index =+ 1
-        }
+        // let index = 1
+        // while (options[selected - (index + 1)] && cursor < options[selected - (index + 1)].top){
+        //   index =+ 1
+        // }
+        const selectedIndex = options.findIndex(cell => cursor < cell.bottom && cursor > cell.top);
+        console.log("down", selected, cursor, selectedIndex)
         if (cursor < options[selected].top) {
           handleSelection(
             options[selected - index].item,
