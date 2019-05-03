@@ -51,31 +51,31 @@ export default function(
     case "top":
       if (options[selected + 1]) {
         let index = 1
-        while (cursor > options[selected].bottom){
+        while (options[selected + (index + 1)] && cursor > options[selected + (index + 1)].bottom){
           index =+ 1
         }
-        // if (cursor > options[selected].bottom) {
+        if (cursor > options[selected].bottom) {
           handleSelection(
             options[selected + index].item,
             options[selected + index].index,
             cursor
           );
-        // }
+        }
       }
       break;
     case "down":
       if (options[selected - 1]) {
         let index = 1
-        while (cursor < options[selected].top){
+        while (options[selected - (index + 1)] && cursor < options[selected - (index + 1)].top){
           index =+ 1
         }
-        // if (cursor < options[selected].top) {
+        if (cursor < options[selected].top) {
           handleSelection(
             options[selected - index].item,
             options[selected - index].index,
             cursor
           );
-        // }
+        }
       }
       break;
     default:
