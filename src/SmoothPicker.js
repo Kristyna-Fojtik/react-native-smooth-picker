@@ -13,10 +13,17 @@ class SmoothPicker extends Component {
   options = [];
   countItems = 0;
 
-  state = {
-    selected: this.props.initialScrollToIndex || 1,
-    scrollPosition: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: this.props.initialScrollToIndex || 1,
+      scrollPosition: null
+    };
+    this.onViewableItemsChanged = this.onViewableItemsChanged.bind(this)
+
+  }
+
+
 
   shouldComponentUpdate(nextProps, nextState) {
     return nextState.selected !== this.state.selected;
@@ -68,11 +75,11 @@ class SmoothPicker extends Component {
   };
 
   _handleSelection = (item, index, scrollPosition) => {
-    this.props.onSelected({ item, index });
-    this.setState({
-      selected: index,
-      scrollPosition: scrollPosition
-    });
+    // this.props.onSelected({ item, index });
+    // this.setState({
+    //   selected: index,
+    //   scrollPosition: scrollPosition
+    // });
   };
 
   _renderItem = info => {
@@ -135,6 +142,30 @@ class SmoothPicker extends Component {
     );
   };
 
+  onViewableItemsChanged = (info) => {
+    const viewableItems = info.viewableItems;
+
+    if (viewableItems === undefined) {
+      return
+    }
+    const viewableItem0 = viewableItems[0];
+
+    if (viewableItem0 === undefined) {
+      return
+    }
+    let index = viewableItems[0].index;
+    const item = viewableItems[0];
+
+    if ( index === undefined || item === undefined) {
+      return
+    }
+    this.props.onSelected({item,  index })
+    this.setState({
+      selected: index,
+    });
+   
+  }
+
   render() {
     const { horizontal, magnet, snapInterval, snapToAlignment } = this.props;
 
@@ -165,6 +196,7 @@ class SmoothPicker extends Component {
             );
           }
         }}
+        onViewableItemsChanged={this.onViewableItemsChanged}
         getItemLayout={(_, index) => {
           let itemLayout;
           if (snapInterval) {

@@ -40,26 +40,25 @@ export default function(
     case "right":
       if (options[selected - 1]) {
         if (cursor < options[selected].left) {
-          handleSelection(
-            options[selected - 1].item,
-            options[selected - 1].index,
-            cursor
-          );
+          // handleSelection(
+          //   options[selected - 1].item,
+          //   options[selected - 1].index,
+          //   cursor
+          // );
         }
       }
       break;
     case "top":
       if (options[selected + 1]) {
-        // let index = 1
-        // while (options[selected + (index + 1)] && cursor > options[selected + (index + 1)].bottom){
-        //   index =+ 1
-        // }
-        const selectedIndex = options.findIndex(cell => cursor < cell.bottom && cursor > cell.top);
-        console.log("top", selected, cursor, selectedIndex)
+        // let lastIndex = options.length - 1;
+        // const customCursor = cursor 
+        // const foundIndex = options.findIndex(cell => customCursor < cell.bottom && customCursor > cell.top);
+        // const selectedIndex = foundIndex || lastIndex;
+        // console.log("top", selected, cursor, options, selectedIndex, foundIndex, lastIndex)
         if (cursor > options[selected].bottom) {
           handleSelection(
-            options[selectedIndex].item,
-            options[selectedIndex].index,
+            options[selected + 1].item,
+            options[selected + 1].index,
             cursor
           );
         }
@@ -67,18 +66,17 @@ export default function(
       break;
     case "down":
       if (options[selected - 1]) {
-        // let index = 1
-        // while (options[selected - (index + 1)] && cursor < options[selected - (index + 1)].top){
-        //   index =+ 1
-        // }
-        const selectedIndex = options.findIndex(cell => cursor < cell.bottom && cursor > cell.top);
-        console.log("down", selected, cursor, selectedIndex)
+        // let lastIndex = 0;
+        // const customCursor = cursor 
+        // const foundIndex = options.findIndex(cell => customCursor < cell.bottom && customCursor > cell.top);
+        // const selectedIndex = foundIndex || lastIndex;
+        // console.log("down", selected, cursor, options, selectedIndex, foundIndex, lastIndex)
         if (cursor < options[selected].top) {
-          handleSelection(
-            options[selected - index].item,
-            options[selected - index].index,
-            cursor
-          );
+          // handleSelection(
+          //   options[selected - 1].item,
+          //   options[selected - 1].index,
+          //   cursor
+          // );
         }
       }
       break;
