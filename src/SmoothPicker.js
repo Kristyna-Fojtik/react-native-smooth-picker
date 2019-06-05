@@ -181,6 +181,10 @@ class SmoothPicker extends Component {
         {...this.props}
         {...snap}
         onLayout={({ nativeEvent: { layout } }) => {
+          this.smoothPicker.scrollToIndex({
+            animated: false,
+            index: this.props.initialScrollToIndex
+          });
           this.widthParent = layout.width;
           this.heightParent = layout.height;
         }}
@@ -239,7 +243,7 @@ class SmoothPicker extends Component {
           }
         }}
         renderItem={this._renderItem}
-        ref={"smoothPicker"}
+        ref={instance => this.smoothPicker = instance}
       />
     );
   }
